@@ -5,7 +5,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import dateFilter from "@/filters/date.filter";
+import currencyFilter from "@/filters/currency.filter";
 import messagePlugin from "@/utils/message.plugin"
+import Loader from "@/components/app/Loader"
 import 'materialize-css/dist/js/materialize.min'
 
 import firebase from "firebase/app"
@@ -16,14 +18,18 @@ Vue.config.productionTip = false
 Vue.use(Vuelidate)
 Vue.use(messagePlugin)
 Vue.filter('date', dateFilter)
+Vue.filter('currency', currencyFilter)
+Vue.component(Loader)
 
-firebase.initializeApp({
-  apiKey: "AIzaSyAjqU2Ah2L1ZccI4M9k1d-tNyru7HVIHu0",
-  authDomain: "vue-crm-e159f.firebaseapp.com",
-  projectId: "vue-crm-e159f",
-  storageBucket: "vue-crm-e159f.appspot.com",
-  messagingSenderId: "1053829283647",
-  appId: "1:1053829283647:web:7ffeea15c555be81479d8a"
+firebase.initializeApp(  {
+  apiKey: "AIzaSyD0cgy9ghvyxJCX2sXUSAm1Ia_ABVpZNJc",
+  authDomain: "vue-crm-407f0.firebaseapp.com",
+  databaseURL: "https://vue-crm-407f0-default-rtdb.firebaseio.com",
+  projectId: "vue-crm-407f0",
+  storageBucket: "vue-crm-407f0.appspot.com",
+  messagingSenderId: "17034109531",
+  appId: "1:17034109531:web:0dd0ba598f93fcd46d957e",
+  measurementId: "G-LZB53MNL0P"
 })
 
 let app;

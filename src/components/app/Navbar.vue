@@ -16,7 +16,7 @@
               data-target="dropdown"
               ref="menu1"
           >
-            USER NAME
+            {{ name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -48,8 +48,14 @@ export default {
     menu1: null
   }),
   methods: {
-    logout() {
+    async logout() {
+      await this.$store.dispatch('logout')
       this.$router.push('/login?message=logout')
+    }
+  },
+  computed: {
+    name() {
+      return this.$store.getters.info.name;
     }
   },
   mounted() {
