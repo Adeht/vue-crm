@@ -34,9 +34,6 @@ export default {
 
   },
   components: {CategoryEdit, CategoryCreate},
-  component: {
-    CategoryCreate, CategoryEdit
-  },
   methods: {
     addNewCategories(category) {
       this.categories.push(category)
