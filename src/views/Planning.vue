@@ -5,6 +5,7 @@
       <h4>12 212</h4>
     </div>
 
+    <Loader />
     <section>
       <div>
         <p>
@@ -21,3 +22,19 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'planning',
+  data: () => ({
+    loading: true,
+    categories: []
+  }),
+  async mounted() {
+    const records = await this.$store.dispatch('fetchRecords')
+    const categories = await this.$store.dispatch('fetchCategories')
+
+    this.loading = false
+  }
+}
+</script>

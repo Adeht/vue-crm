@@ -21,7 +21,6 @@
 <script>
 import CategoryCreate from '@/components/CategoryCreate'
 import CategoryEdit from '@/components/CategoryEdit'
-import Loader from "@/components/app/Loader";
 export default {
   name: 'categories',
   data: () => ({
@@ -34,7 +33,7 @@ export default {
     this.loading = false
 
   },
-  components: {Loader, CategoryEdit, CategoryCreate},
+  components: {CategoryEdit, CategoryCreate},
   component: {
     CategoryCreate, CategoryEdit
   },

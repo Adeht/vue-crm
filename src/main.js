@@ -19,7 +19,7 @@ Vue.use(Vuelidate)
 Vue.use(messagePlugin)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
-Vue.component(Loader)
+Vue.component('Loader', Loader)
 
 firebase.initializeApp(  {
   apiKey: "AIzaSyD0cgy9ghvyxJCX2sXUSAm1Ia_ABVpZNJc",

@@ -23,7 +23,6 @@
 <script>
   import Navbar from "@/components/app/Navbar";
   import Sidebar from "@/components/app/Sidebar";
-  import Loader from "@/components/app/Loader";
 
   export default {
     name: 'MainLayout',
@@ -38,7 +37,6 @@
       this.loading = false
     },
     components: {
-      Loader,
       Navbar, Sidebar
     }
   }
