@@ -22,7 +22,6 @@
 <script>
 import HomeBill from '@/components/HomeBill'
 import HomeCurrency from '@/components/HomeCurrency'
-import Loader from "@/components/app/Loader";
 export default {
   name: 'Home',
   data: () => ({

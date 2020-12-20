@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import Loader from "@/components/app/Loader";
 import {required, minValue} from 'vuelidate/src/validators'
 import {mapGetters} from 'vuex'
 export default {

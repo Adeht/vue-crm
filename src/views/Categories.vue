@@ -21,7 +21,6 @@
 <script>
 import CategoryCreate from '@/components/CategoryCreate'
 import CategoryEdit from '@/components/CategoryEdit'
-import Loader from "@/components/app/Loader";
 export default {
   name: 'categories',
   data: () => ({
