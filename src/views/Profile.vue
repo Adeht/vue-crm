@@ -1,25 +1,27 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>{{'profile' | localize}}</h3>
     </div>
 
-    <form class="form">
+    <form class="form" @submit.prevent="submitHandler">
       <div class="input-field">
         <input
             id="description"
             type="text"
             v-model="name"
+            :class="{invalid: $v.name.$dirty && !$v.name.required}"
         >
         <label for="description">Имя</label>
         <span
-            class="helper-text invalid">name</span>
+            v-if="$v.name.$dirty && !$v.name.required"
+            class="helper-text invalid">Поле не может быть пустым</span>
       </div>
 
       <div class="switch">
         <label>
           Украинский
-          <input type="checkbox">
+          <input type="checkbox" v-model="isRU">
           <span class="lever"></span>
           Русский
         </label>
@@ -34,18 +36,40 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
+import {required} from "vuelidate/lib/validators";
 export default {
   data: () => ({
-    name: ''
+    name: '',
+    isRU: true
   }),
   mounted() {
     this.name = this.info.name
+    this.isRU = this.info.locale === 'ru-RU'
     setTimeout(M.updateTextFields) //Для правильного позиционирования метериализа
+  },
+  validations: {
+    name: {required},
   },
   computed: {
     ...mapGetters(['info'])
-  }
+  },
+  methods: {
+    ...mapActions(['updateInfo']),
+    async submitHandler() {
+      if ( this.$v.$invalid ) {
+        this.$v.$touch()
+        return
+      }
+
+      try {
+        await this.updateInfo({
+          name: this.name,
+          locale: this.isRU ? 'ru-RU' : 'uk-UA'
+        })
+      } catch (e) {}
+    }
+  },
 }
 </script>
 
