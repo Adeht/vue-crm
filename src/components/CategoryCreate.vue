@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Создать</h4>
+        <h4>{{'Create' | localize}}</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -13,8 +13,8 @@
               v-model="title"
               :class="{invalid: $v.title.$dirty && !$v.title.required}"
           >
-          <label for="name">Название</label>
-          <span v-if="$v.title.$dirty && !$v.title.required" class="helper-text invalid">Введите название категории</span>
+          <label for="name">{{ 'title' | localize }}</label>
+          <span v-if="$v.title.$dirty && !$v.title.required" class="helper-text invalid">{{'Input_title_category'|localize}}</span>
         </div>
 
         <div class="input-field">
@@ -24,12 +24,12 @@
               v-model.number="limit"
               :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
           >
-          <label for="limit">Лимит</label>
-          <span v-if="$v.limit.$dirty && !$v.limit.minValue" class="helper-text invalid">Минимальная сумма {{$v.limit.$params.minValue.min}} грн.</span>
+          <label for="limit">{{'Limit' | localize}}</label>
+          <span v-if="$v.limit.$dirty && !$v.limit.minValue" class="helper-text invalid">{{'Min_summa' | localize}} {{$v.limit.$params.minValue.min}} грн.</span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Создать
+          {{'Create' | localize}}
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -38,6 +38,7 @@
 </template>
 <script>
 import {required, minValue} from 'vuelidate/src/validators'
+import localizeFilter from "@/filters/localize.filter";
 export default {
   data: () => ({
     title: '',
@@ -65,7 +66,7 @@ export default {
         this.title = ''
         this.limit = 1
         this.$v.$reset()
-        this.$message('Категория создана')
+        this.$message(localizeFilter('Category_create'))
         this.$emit('created', category)
       } catch (e) {
 

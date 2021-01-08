@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
+      <span class="card-title">{{'Home_buh' | localize}}</span>
       <div class="input-field">
         <input
             id="email"
@@ -12,10 +12,10 @@
         <label for="email">Email</label>
         <small
             v-if="$v.email.$dirty && !$v.email.required"
-            class="helper-text invalid">Поле не может быть пустым</small>
+            class="helper-text invalid">{{'Not_blank' | localize}}</small>
         <small
             v-else-if="$v.email.$dirty && !$v.email.email"
-            class="helper-text invalid">Не правильный формат почты</small>
+            class="helper-text invalid">{{'Not_email' | localize}}</small>
       </div>
       <div class="input-field">
         <input
@@ -24,9 +24,9 @@
             v-model.trim = "password"
             :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
         >
-        <label for="password">Пароль</label>
-        <small v-if="$v.password.$dirty && !$v.password.required" class="helper-text invalid">Введите пароль</small>
-        <small v-else-if="$v.password.$dirty && !$v.password.minLength" class="helper-text invalid">Минимальный пароль {{$v.password.$params.minLength.min}} символов. Вы ввели {{password.length}}.</small>
+        <label for="password">{{'Password' | localize}}</label>
+        <small v-if="$v.password.$dirty && !$v.password.required" class="helper-text invalid">{{'Input_password' | localize}}</small>
+        <small v-else-if="$v.password.$dirty && !$v.password.minLength" class="helper-text invalid">{{'Min_pass' | localize}} {{$v.password.$params.minLength.min}} {{'simvol_vi_vveli' | localize}} {{password.length}}.</small>
       </div>
     </div>
     <div class="card-action">
@@ -35,14 +35,14 @@
             class="btn waves-effect waves-light auth-submit"
             type="submit"
         >
-          Войти
+          {{'Enter' | localize}}
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Нет аккаунта?
-        <router-link to="/register">Зарегистрироваться</router-link>
+        {{'No_acc' | localize}}?
+        <router-link to="/register">{{'Register' | localize}}</router-link>
       </p>
     </div>
   </form>

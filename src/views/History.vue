@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{'History' | localize}}</h3>
     </div>
 
     <div class="history-chart">
@@ -9,7 +9,7 @@
     </div>
 
     <Loader v-if="loading"/>
-    <p class="center" v-else-if="!records.length">Записей пока нет. <router-link to="/record">Добавить первую запись</router-link></p>
+    <p class="center" v-else-if="!records.length">{{'Records_not_found' | localize}}. <router-link to="/record">Добавить первую запись</router-link></p>
     <section v-else>
       <HistoryTable :records="items"/>
       <Paginate
@@ -29,6 +29,7 @@
 import paginationMixins from "@/mixins/pagination.mixin"
 import HistoryTable from "@/components/HistoryTable"
 import {Pie} from "vue-chartjs"
+import localizeFilter from "@/filters/localize.filter";
 
 export default {
   name: 'history',
@@ -49,14 +50,14 @@ export default {
       this.setupPagination( this.records.map(record => ({
         ...record,
         categoryName: categories.find(cat => cat.id === record.categoryID).title,
-        typeText: record.type === 'income' ? 'Доход' : 'Расход',
+        typeText: localizeFilter(record.type),
         typeColor: record.type === 'income' ? 'green' : 'red'
       })) )
 
       this.renderChart({
         labels: categories.map(c => c.title),
         datasets: [{
-          label: 'Расходы по категориям',
+          label: localizeFilter('Minus_by_category'),
           data: categories.map(c => {
             return this.records.reduce((total, r) => {
               if (r.categoryID === c.id && r.type === 'outcome') {

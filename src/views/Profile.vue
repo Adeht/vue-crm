@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{'profile' | localize}}</h3>
+      <h3>{{'Profile' | localize}}</h3>
     </div>
 
     <form class="form" @submit.prevent="submitHandler">
@@ -12,15 +12,15 @@
             v-model="name"
             :class="{invalid: $v.name.$dirty && !$v.name.required}"
         >
-        <label for="description">Имя</label>
+        <label for="description">{{'Name' | localize}}</label>
         <span
             v-if="$v.name.$dirty && !$v.name.required"
-            class="helper-text invalid">Поле не может быть пустым</span>
+            class="helper-text invalid">{{'Not_blank' | localize}}</span>
       </div>
 
       <div class="switch">
         <label>
-          Украинский
+          Українська
           <input type="checkbox" v-model="isRU">
           <span class="lever"></span>
           Русский
@@ -28,7 +28,7 @@
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Обновить
+        {{'Refresh' | localize}}
         <i class="material-icons right">send</i>
       </button>
     </form>

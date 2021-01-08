@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandle">
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
+      <span class="card-title">{{'Home_buh' | localize}}</span>
       <div class="input-field">
         <input
             id="email"
@@ -13,10 +13,10 @@
         <label for="email">Email</label>
         <small
             v-if="$v.email.$dirty && !$v.email.required"
-            class="helper-text invalid">Поле не может быть пустым</small>
+            class="helper-text invalid">{{'Not_blank' | localize}}</small>
         <small
             v-else-if="$v.email.$dirty && !$v.email.email"
-            class="helper-text invalid">Не правильный формат почты</small>
+            class="helper-text invalid">{{'Not_email' | localize}}</small>
       </div>
       <div class="input-field">
         <input
@@ -25,9 +25,9 @@
             v-model.trim="password"
             :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
         >
-        <label for="password">Пароль</label>
-        <small v-if="($v.password.$dirty && !$v.password.required)" class="helper-text invalid">Введите пароль</small>
-        <small v-else-if="($v.password.$dirty && !$v.password.minLength)" class="helper-text invalid">Минимальный пароль {{$v.password.$params.minLength.min}} символов. Вы ввели {{password.length}}.</small>
+        <label for="password">{{'Password' | localize}}</label>
+        <small v-if="($v.password.$dirty && !$v.password.required)" class="helper-text invalid">{{'Input_password' | localize}}</small>
+        <small v-else-if="($v.password.$dirty && !$v.password.minLength)" class="helper-text invalid">{{'Min_pass' | localize}} {{$v.password.$params.minLength.min}} символов. Вы ввели {{password.length}}.</small>
       </div>
       <div class="input-field">
         <input
@@ -36,13 +36,13 @@
             v-model.trim="name"
             :class="{invalid: $v.name.$dirty && !$v.name.required }"
         >
-        <label for="name">Имя</label>
-        <small v-if="$v.name.$dirty && !$v.name.required" class="helper-text invalid">Поле не может быть пустым</small>
+        <label for="name">{{'Name' | localize}}</label>
+        <small v-if="$v.name.$dirty && !$v.name.required" class="helper-text invalid">{{'Not_blank' | localize}}</small>
       </div>
       <p>
         <label>
           <input type="checkbox" v-model="agree"/>
-          <span>С правилами согласен</span>
+          <span>{{'Rules_check' | localize}}</span>
         </label>
       </p>
     </div>
@@ -52,14 +52,14 @@
             class="btn waves-effect waves-light auth-submit"
             type="submit"
         >
-          Зарегистрироваться
+          {{'Register' | localize}}
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Уже есть аккаунт?
-        <router-link to="/login">Войти!</router-link>
+        {{'Acc_is_set' | localize}}?
+        <router-link to="/login">{{'Enter' | localize}}!</router-link>
       </p>
     </div>
   </form>
